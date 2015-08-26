@@ -1,51 +1,52 @@
-// import java.util.Arrays;
+import java.util.Arrays;
+
+import org.junit.*;
+import static org.junit.Assert.*;
+
+
+public class CuisineTest {
 //
-// import org.junit.*;
-// import static org.junit.Assert.*;
-//
-//
-// public class CategoryTest {
-//
-//     @Rule
-//     public DatabaseRule database = new DatabaseRule();
-//
-//     @Test
-//     public void all_emptyAtFirst() {
-//       assertEquals(Category.all().size(), 0);
-//     }
-//
-//     @Test
-//     public void equals_returnsTrueIfDescriptionsAretheSame() {
-//       Category firstCategory = new Category("Household Shores");
-//       Category secondCategory = new Category("Household Shores");
-//       assertTrue(firstCategory.equals(secondCategory));
-//     }
-//
-//     @Test
-//     public void save_savesIntoDatabase_true() {
-//       Category myCategory = new Category("Household Shores");
-//       myCategory.save();
-//       assertTrue(Category.all().get(0).equals(myCategory));
-//     }
-//
-//     @Test
-//     public void find_findsCategoryInDatabase_true() {
-//       Category myCategory = new Category("Household Shores");
-//       myCategory.save();
-//       Category savedCategory = Category.find(myCategory.getId());
-//       assertTrue(myCategory.equals(savedCategory));
-//     }
-//
-//     @Test
-//     public void getTasks_retrievesAllTasksFromDatabase_tasksList() {
-//       Category myCategory = new Category("Household chores");
-//       myCategory.save();
-//       Task firstTask = new Task("Mow the lawn", myCategory.getId());
-//       firstTask.save();
-//       Task secondTask = new Task("Do the dishes", myCategory.getId());
-//       secondTask.save();
-//       Task[] tasks = new Task[] {firstTask, secondTask};
-//       assertTrue(myCategory.getTasks().containsAll(Arrays.asList(tasks)));
-//     }
-//
-// }
+    @Rule
+    public DatabaseRule database = new DatabaseRule();
+
+
+    @Test
+    public void all_emptyAtFirst() {
+      assertEquals(Cuisine.all().size(), 0);
+    }
+
+    @Test
+    public void equals_returnsTrueIfDescriptionsAretheSame() {
+      Cuisine firstCuisine = new Cuisine("Italian");
+      Cuisine secondCuisine = new Cuisine("Italian");
+      assertTrue(firstCuisine.equals(secondCuisine));
+    }
+
+    @Test
+    public void save_savesIntoDatabase_true() {
+      Cuisine myCuisine = new Cuisine("Italian");
+      myCuisine.save();
+      assertTrue(Cuisine.all().get(0).equals(myCuisine));
+    }
+
+    @Test
+    public void find_findsCuisineInDatabase_true() {
+      Cuisine myCuisine = new Cuisine("Italian");
+      myCuisine.save();
+      Cuisine savedCuisine = Cuisine.find(myCuisine.getId());
+      assertTrue(myCuisine.equals(savedCuisine));
+    }
+
+    @Test
+    public void getRestaurants_retrievesAllRestaurantFromDatabase_restaurantsList() {
+      Cuisine myCuisine = new Cuisine("Italian");
+      myCuisine.save();
+      Restaurant firstRestaurant = new Restaurant("McDonalds", myCuisine.getId());
+      firstRestaurant.save();
+      Restaurant secondRestaurant = new Restaurant("Olive Garden", myCuisine.getId());
+      secondRestaurant.save();
+      Restaurant[] restaurants = new Restaurant[] {firstRestaurant, secondRestaurant};
+      assertTrue(myCuisine.getRestaurants().containsAll(Arrays.asList(restaurants)));
+    }
+
+}

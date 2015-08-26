@@ -16,24 +16,24 @@ public class Cuisine {
   public Cuisine (String description) {
     this.description = description;
   }
-//
-//   public static List<Category> all() {
-//     String sql = "SELECT id, name FROM categories";
-//     try(Connection con = DB.sql2o.open()) {
-//       return con.createQuery(sql).executeAndFetch(Category.class);
-//     }
-//   }
-//
-//   @Override
-//   public boolean equals(Object otherCategory) {
-//     if (!(otherCategory instanceof Category)) {
-//       return false;
-//     } else {
-//       Category newCategory = (Category) otherCategory;
-//       return this.getName().equals(newCategory.getName());
-//     }
-//   }
-//
+
+  public static List<Cuisine> all() {
+    String sql = "SELECT id, description FROM cuisines";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Cuisine.class);
+    }
+  }
+
+  @Override
+  public boolean equals(Object otherCuisine) {
+    if (!(otherCuisine instanceof Cuisine)) {
+      return false;
+    } else {
+      Cuisine newCuisine = (Cuisine) otherCuisine;
+      return this.getDescription().equals(newCuisine.getDescription());
+    }
+  }
+
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO cuisines (description) VALUES (:description)";
@@ -43,26 +43,26 @@ public class Cuisine {
         .getKey();
     }
   }
-//
-//   public static Category find(int id) {
-//     try(Connection con = DB.sql2o.open()) {
-//       String sql = "SELECT * FROM categories WHERE id=:id";
-//       Category category = con.createQuery(sql)
-//         .addParameter("id", id)
-//         .executeAndFetchFirst(Category.class);
-//         return category;
-//     }
-//   }
-//
-//   public List<Task> getTasks() {
-//     try(Connection con = DB.sql2o.open()) {
-//       String sql = "SELECT * FROM tasks WHERE categoryId=:id";
-//       return con.createQuery(sql)
-//         .addParameter("id", this.id)
-//         .executeAndFetch(Task.class);
-//     }
-//   }
-//
+
+  public static Cuisine find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM cuisines WHERE id=:id";
+      Cuisine cuisine = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Cuisine.class);
+        return cuisine;
+    }
+  }
+
+  public List<Restaurant> getRestaurants() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants WHERE cuisine_id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeAndFetch(Restaurant.class);
+    }
+  }
+
 //   public void delete() {
 //     try(Connection con = DB.sql2o.open()) {
 //       String sql = "DELETE FROM categories WHERE id = :id;";

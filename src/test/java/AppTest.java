@@ -20,19 +20,19 @@ public class AppTest extends FluentTest {
     return webDriver;
   }
 
-  // @ClassRule
-  // public static ServerRule server = new ServerRule();
-  //
-  // @Rule
-  // public DatabaseRule database = new DatabaseRule();
+  @ClassRule
+  public static ServerRule server = new ServerRule();
+
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
 
-  // @Test
-  // public void rootTest() {
-  //   goTo("http://localhost:4567/");
-  //   assertThat(pageSource()).contains("Todo list!");
-  // }
-  //
+  @Test
+  public void rootTest() {
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Your Favorite Restaurants!");
+  }
+
   // // @Test
   // // public void categoryIsCreatedTest() {
   // //   goTo("http://localhost:4567/");
