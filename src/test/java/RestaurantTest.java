@@ -12,28 +12,28 @@ public class RestaurantTest {
     assertEquals(Restaurant.all().size(), 0);
   }
 
-  // @Test
-  // public void equals_returnsTrueIfDescriptionsAretheSame() {
-  //   Task firstTask = new Task("Mow the lawn", 1);
-  //   Task secondTask = new Task("Mow the lawn", 1);
-  //   assertTrue(firstTask.equals(secondTask));
-  // }
-  //
-  // @Test
-  // public void save_returnsTrueIfDescriptionsAretheSame() {
-  //   Task myTask = new Task("Mow the lawn", 1);
-  //   myTask.save();
-  //   assertTrue(Task.all().get(0).equals(myTask));
-  // }
-  //
-  // @Test
-  // public void save_assignsIdToObject() {
-  //   Task myTask = new Task("Mow the lawn", 1);
-  //   myTask.save();
-  //   Task savedTask = Task.all().get(0);
-  //   assertEquals(myTask.getId(), savedTask.getId());
-  // }
-  //
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Restaurant firstRestaurant = new Restaurant("McDonalds", 1);
+    Restaurant secondRestaurant = new Restaurant("McDonalds", 1);
+    assertTrue(firstRestaurant.equals(secondRestaurant));
+  }
+
+  @Test
+  public void save_returnsTrueIfNamesAretheSame() {
+    Restaurant myRestaurant = new Restaurant("McDonalds", 1);
+    myRestaurant.save();
+    assertTrue(Restaurant.all().get(0).equals(myRestaurant));
+  }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Restaurant myRestaurant = new Restaurant("McDonalds", 1);
+    myRestaurant.save();
+    Restaurant savedRestaurant = Restaurant.all().get(0);
+    assertEquals(myRestaurant.getId(), savedRestaurant.getId());
+  }
+
   // @Test
   // public void find_findsTaskInDatabase_true() {
   //   Task myTask = new Task("Mow the lawn", 1);

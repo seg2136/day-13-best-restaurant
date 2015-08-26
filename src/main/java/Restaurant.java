@@ -44,16 +44,16 @@ public class Restaurant {
     }
   }
 
-  // public void save() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "INSERT INTO tasks (description, categoryId) VALUES (:description, :categoryId)";
-  //     this.id = (int) con.createQuery(sql, true)
-  //       .addParameter("description", this.description)
-  //       .addParameter("categoryId", this.categoryId)
-  //       .executeUpdate()
-  //       .getKey();
-  //   }
-  // }
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO restaurants (name, cuisine_id) VALUES (:name, :cuisine_id)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .addParameter("cuisine_id", this.cuisine_id)
+        .executeUpdate()
+        .getKey();
+    }
+  }
   //
   // public static Task find(int id) {
   //   try(Connection con = DB.sql2o.open()) {
@@ -63,32 +63,5 @@ public class Restaurant {
   //         .executeAndFetchFirst(Task.class);
   //         return task;
   //   }
-  // }
-
-  // private String mDescription;
-  // private LocalDateTime mCreatedAt;
-  // private boolean mCompleted;
-  // private int mId;
-  //
-  //
-  // public Task(String description){
-  //   mDescription = description;
-  //   mCreatedAt = LocalDateTime.now();
-  //   mCompleted = false;
-  //   instances.add(this);
-  //   mId = instances.size();
-  // }
-
-  // public boolean isCompleted() {
-  //   return mCompleted;
-  // }
-
-  // public void completeTask() {
-  //   mCompleted = true;
-  // }
-
-  //
-  // public static void clear() {
-  //   instances.clear();
   // }
 }
