@@ -33,22 +33,22 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Your Favorite Restaurants!");
   }
 
-  // // @Test
-  // // public void categoryIsCreatedTest() {
-  // //   goTo("http://localhost:4567/");
-  // //   fill("#name").with("Household chores");
-  // //   submit(".btn");
-  // //   assertThat(pageSource()).contains("Household chores");
-  // // }
-  //
-  // @Test
-  // public void categoryIsDisplayedTest() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //   String categoryPath = String.format("http://localhost:4567/categories/%d", myCategory.getId());
-  //   goTo(categoryPath);
-  //   assertThat(pageSource()).contains("Household chores");
-  // }
+  @Test
+  public void cuisineIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    fill("#description").with("Italian");
+    submit(".btn");
+    assertThat(pageSource()).contains("Italian");
+  }
+
+  @Test
+  public void cuisineIsDisplayedTest() {
+    Cuisine myCuisine = new Cuisine("Italian");
+    myCuisine.save();
+    String cuisinePath = String.format("http://localhost:4567/cuisines/%d", myCuisine.getId());
+    goTo(cuisinePath);
+    assertThat(pageSource()).contains("Italian");
+  }
 
   // @Test
   // public void categoryTasksFromIsDisplayed() {

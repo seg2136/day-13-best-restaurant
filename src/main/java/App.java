@@ -19,28 +19,28 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-  //   post("/categories", (request, response) -> {
-  //     HashMap<String, Object> model = new HashMap<String, Object>();
-  //     String name = request.queryParams("name");
-  //     Category newCategory = new Category(name);
-  //     newCategory.save();
-  //     model.put("categories", Category.all());
-  //     model.put("template", "templates/index.vtl");
-  //     return new ModelAndView(model, layout);
-  //   }, new VelocityTemplateEngine());
-  //
-  //
-  //   get("/categories/:id", (request, response) -> {
-  //     //need to put :id in the url so that we can grab it below
-  //     HashMap<String, Object> model = new HashMap<String, Object>();
-  //     Category category = Category.find(Integer.parseInt(request.params(":id")));
-  //     model.put("category", category);
-  //     model.put("template", "templates/category.vtl");
-  //     return new ModelAndView(model, layout);
-  //   }, new VelocityTemplateEngine());
-  //
-  //   //delete method:the order matters,save the.all AFTER you do your updating or deleting
-  //
+    post("/cuisines", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String description = request.queryParams("description");
+      Cuisine newCuisine = new Cuisine(description);
+      newCuisine.save();
+      model.put("cuisines", Cuisine.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+    get("/cuisines/:id", (request, response) -> {
+      //need to put :id in the url so that we can grab it below
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+      model.put("cuisine", cuisine);
+      model.put("template", "templates/cuisine.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    //delete method:the order matters,save the.all AFTER you do your updating or deleting
+
   //  post("/categories/:id/delete", (request, response) -> {
   // //need to put :id in the url so that we can grab it below
   //   HashMap<String, Object> model = new HashMap<String, Object>();

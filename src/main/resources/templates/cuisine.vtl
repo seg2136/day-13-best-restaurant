@@ -1,0 +1,29 @@
+<h1>Add a Restaurant to $cuisine.getDescription()</h1>
+
+<ol>
+#foreach($restaurant in $cuisine.getRestaurants())
+  <h4>$restaurant.getName()</h4>
+#end
+</ol>
+
+<div class="form-group">
+  <label for="name">Submit a restaurant</label>
+  <input id="name" name="name" type="text" class="form-control">
+</div>
+
+<button type="submit" class="btn btn-success">Add restaurant</button>
+
+<br>
+<form action="/cuisines/$cuisine.getId()/delete" method="post">
+
+  <button type="submit" class="btn btn-success">Delete cuisine</button>
+</form>
+
+<form action="/cuisines/$cuisine.getId()/update">
+
+  <button type="submit" class="btn btn-info">Update this cuisine</button>
+</form>
+<br>
+
+
+<a href="/">Return to Main Page</a>
