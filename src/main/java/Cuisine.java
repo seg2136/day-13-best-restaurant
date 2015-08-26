@@ -1,21 +1,21 @@
-// import java.util.List;
-// import org.sql2o.*;
-//
-// public class Category {
-//   private int id;
-//   private String name;
-//
-//   public int getId() {
-//     return id;
-//   }
-//
-//   public String getName() {
-//     return name;
-//   }
-//
-//   public Category (String name) {
-//     this.name = name;
-//   }
+import java.util.List;
+import org.sql2o.*;
+
+public class Cuisine {
+  private int id;
+  private String description;
+
+  public int getId() {
+    return id;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public Cuisine (String description) {
+    this.description = description;
+  }
 //
 //   public static List<Category> all() {
 //     String sql = "SELECT id, name FROM categories";
@@ -34,15 +34,15 @@
 //     }
 //   }
 //
-//   public void save() {
-//     try(Connection con = DB.sql2o.open()) {
-//       String sql = "INSERT INTO categories (name) VALUES (:name)";
-//       this.id = (int) con.createQuery(sql, true)
-//         .addParameter("name", this.name)
-//         .executeUpdate()
-//         .getKey();
-//     }
-//   }
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO cuisines (description) VALUES (:description)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("description", this.description)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 //
 //   public static Category find(int id) {
 //     try(Connection con = DB.sql2o.open()) {
@@ -83,4 +83,4 @@
 //     }
 //
 //
-// }
+}

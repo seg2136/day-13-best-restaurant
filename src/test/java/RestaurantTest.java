@@ -41,69 +41,14 @@ public class RestaurantTest {
     Restaurant savedRestaurant = Restaurant.find(myRestaurant.getId());
     assertTrue(myRestaurant.equals(savedRestaurant));
   }
-  //
-  // @Test
-  // public void save_savesCategoryIdIntoDB_true() {
-  //   Category myCategory = new Category ("Household chores");
-  //   myCategory.save();
-  //   Task myTask = new Task("Mow the lawn", myCategory.getId());
-  //   myTask.save();
-  //   Task savedTask = Task.find(myTask.getId());
-  //   assertEquals(savedTask.getCategoryId(), myCategory.getId());
-  // }
 
-
-  // @Rule
-  // public ClearRule clearRule = new ClearRule();
-  //
-  // @Test //Test that we can initiate a Task object
-  // public void Task_instantiatesCorrectly_true() {
-  //   Task myTask = new Task("Mow the lawn");
-  //   assertEquals(true, myTask instanceof Task);
-  // }
-  //
-  // @Test
-  // public void task_instantiatesWithDescription_true() {
-  //   Task myTask = new Task("Mow the lawn");
-  //   assertEquals("Mow the lawn", myTask.getDescription());
-  // }
-  //
-  // @Test
-  // public void isCompleted_isFalseAfterInstantiation_false() {
-  //   Task myTask = new Task("Mow the lawn");
-  //   assertEquals(false, myTask.isCompleted());
-  // }
-  //
-  // @Test
-  // public void all_returnsAllInstancesOfTask_true() {
-  //   Task firstTask = new Task("Mow the lawn");
-  //   Task secondTask = new Task("Buy groceries");
-  //   assertTrue(Task.all().contains(firstTask));
-  //   assertTrue(Task.all().contains(secondTask));
-  // }
-  //
-  // @Test
-  // public void newId_tasksInstantiateWithAnID_true() {
-  //   Task myTask = new Task("Mow the lawn");
-  //   assertEquals(Task.all().size(), myTask.getId());
-  // }
-  //
-  // @Test
-  // public void find_returnsTaskWithSameId_secondTask() {
-  //   Task firstTask = new Task("Mow the lawn");
-  //   Task secondTask = new Task("Buy groceries");
-  //   assertEquals(Task.find(secondTask.getId()), secondTask);
-  // }
-  //
-  // @Test
-  // public void find_returnsNullWhenNoTaskFound_null() {
-  //   assertTrue(Task.find(999) == null);
-  // }
-  //
-  // @Test
-  // public void clear_emptiesAllTasksFromArrayList() {
-  //   Task myTask = new Task("Mow the lawn");
-  //   Task.clear();
-  //   assertEquals(Task.all().size(), 0);
-  // }
+  @Test
+  public void save_savesCuisineIdIntoDB_true() {
+    Cuisine myCuisine = new Cuisine ("Italian");
+    myCuisine.save();
+    Restaurant myRestaurant = new Restaurant ("McDonalds", myCuisine.getId());
+    myRestaurant.save();
+    Restaurant savedRestaurant = Restaurant.find(myRestaurant.getId());
+    assertEquals(savedRestaurant.getCuisine_id(), myCuisine.getId());
+  }
 }
