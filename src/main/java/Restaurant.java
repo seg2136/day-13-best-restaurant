@@ -64,4 +64,13 @@ public class Restaurant {
           return restaurant;
     }
   }
+
+  // public void delete() {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "DELETE FROM restaurants WHERE cuisine_id = :cuisine_id;";
+  //     con.createQuery(sql)
+  //       .addParameter("cuisine_id", cuisine_id)
+  //       .executeUpdate();
+  //   }
+  // }
 }

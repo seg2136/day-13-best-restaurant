@@ -50,28 +50,28 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Italian");
   }
 
-  // @Test
-  // public void categoryTasksFromIsDisplayed() {
-  //   goTo("http://localhost:4567/categories/new");
-  //   fill("#name").with("Shopping");
-  //   submit(".btn");
-  //   System.out.println(pageSource());
-  //   click("a", withText("View categories"));
-  //   click("a", withText("Shopping"));
-  //   click("a", withText("Add a new task"));
-  //   assertThat(pageSource()).contains("Add a Task to Shopping");
-  // }
-  //
-  // @Test
-  // public void tasksIsAddedAndDisplayed() {
-  //   goTo("http://localhost:4567/categories/new");
-  //   fill("#name").with("Banking");
-  //   submit(".btn");
-  //   click("a", withText("View categories"));
-  //   click("a", withText("Banking"));
-  //   click("a", withText("Add a new task"));
-  //   fill("#description").with("Deposit paycheck");
-  //   submit(".btn");
-  //   assertThat(pageSource()).contains("Deposit paycheck");
-  // }
+  @Test
+  public void cuisineRestaurantsFormIsDisplayed() {
+    Cuisine myCuisine = new Cuisine("Italian");
+    myCuisine.save();
+    String cuisinePath = String.format("http://localhost:4567/cuisines/%d", myCuisine.getId());
+    goTo(cuisinePath);
+    assertThat(pageSource()).contains("Add a Restaurant to Italian");
+  }
+
+
+
+  @Test
+  public void restaurantIsAddedAndDisplayed() {
+    Cuisine myCuisine = new Cuisine("Italian");
+    myCuisine.save();
+    Restaurant firstRestaurant = new Restaurant("Olive Garden", myCuisine.getId());
+    firstRestaurant.save();
+    Restaurant secondRestaurant = new Restaurant("Palermo", myCuisine.getId());
+    secondRestaurant.save();
+    String cuisinePath = String.format("http://localhost:4567/cuisines/%d", myCuisine.getId());
+    goTo(cuisinePath);
+    assertThat(pageSource()).contains("Olive Garden");
+    assertThat(pageSource()).contains("Palermo");
+  }
 }

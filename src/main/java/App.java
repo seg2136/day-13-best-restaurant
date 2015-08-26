@@ -41,51 +41,51 @@ public class App {
 
     //delete method:the order matters,save the.all AFTER you do your updating or deleting
 
-  //  post("/categories/:id/delete", (request, response) -> {
-  // //need to put :id in the url so that we can grab it below
-  //   HashMap<String, Object> model = new HashMap<String, Object>();
-  //
-  // //this is the same as ****
-  //   Category category = Category.find(Integer.parseInt(request.params(":id")));
-  //   model.put("template", "templates/index.vtl");
-  //   category.delete();
-  //   model.put("categories", Category.all());
-  //   return new ModelAndView(model, layout);
-  // }, new VelocityTemplateEngine());
-  //
-  //
-  //   post("/tasks", (request, response) -> {
-  //     HashMap<String, Object> model = new HashMap<String, Object>();
-  //     String name = request.queryParams("name");
-  //     Category category = Category.find(Integer.parseInt(request.queryParams("categoryId")));
-  //     String description = request.queryParams("description");
-  //
-  //
-  //     Task newTask = new Task(description, category.getId());
-  //     newTask.save();
-  //     model.put("category", category);
-  //     model.put("template", "templates/category.vtl");
-  //     return new ModelAndView(model, layout);
-  //   }, new VelocityTemplateEngine());
-  //
-  //   get("categories/:id/update", (request, response) -> {
-  //   HashMap<String, Object> model = new HashMap<String, Object>();
-  //   Category category = Category.find(Integer.parseInt(request.params(":id")));
-  //
-  //   model.put("category", category);
-  //   model.put("template", "templates/update-form.vtl");
-  //   return new ModelAndView(model, layout);
-  // }, new VelocityTemplateEngine());
-  //
-  // post("categories/:id/update", (request, response) -> {
-  //   HashMap<String, Object> model = new HashMap<String, Object>();
-  //   Category category = Category.find(Integer.parseInt(request.params(":id")));
-  //   String name = request.queryParams("name");
-  //   category.update(name);
-  //
-  //   response.redirect("/");
-  //   return null;
-  // });
+   post("/cuisines/:id/delete", (request, response) -> {
+  //need to put :id in the url so that we can grab it below
+    HashMap<String, Object> model = new HashMap<String, Object>();
+
+  //this is the same as ****
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+    model.put("template", "templates/index.vtl");
+    cuisine.delete();
+    model.put("cuisines", Cuisine.all());
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+
+    post("/cuisines/:id/restaurants", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      // String description = request.queryParams("description");
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+      String name = request.queryParams("name");
+
+      Restaurant newRestaurant = new Restaurant(name, cuisine.getId());
+      newRestaurant.save();
+      model.put("cuisine", cuisine);
+      model.put("restaurants", Restaurant.all());
+      model.put("template", "templates/cuisine.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("cuisines/:id/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+
+    model.put("cuisine", cuisine);
+    model.put("template", "templates/update-form.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  post("cuisines/:id/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+    String description = request.queryParams("description");
+    cuisine.update(description);
+
+    response.redirect("/");
+    return null;
+  });
 
   }
 }
