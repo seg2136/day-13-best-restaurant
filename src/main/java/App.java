@@ -39,19 +39,19 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    //delete method:the order matters,save the.all AFTER you do your updating or deleting
+      //delete method:the order matters,save the.all AFTER you do your updating or deleting
 
-   post("/cuisines/:id/delete", (request, response) -> {
-  //need to put :id in the url so that we can grab it below
-    HashMap<String, Object> model = new HashMap<String, Object>();
+    post("/cuisines/:id/delete", (request, response) -> {
+      //need to put :id in the url so that we can grab it below
+      HashMap<String, Object> model = new HashMap<String, Object>();
 
-  //this is the same as ****
-    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
-    model.put("template", "templates/index.vtl");
-    cuisine.delete();
-    model.put("cuisines", Cuisine.all());
-    return new ModelAndView(model, layout);
-  }, new VelocityTemplateEngine());
+      //this is the same as ****
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+      model.put("template", "templates/index.vtl");
+      cuisine.delete();
+      model.put("cuisines", Cuisine.all());
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
 
     post("/cuisines/:id/restaurants", (request, response) -> {
@@ -87,5 +87,16 @@ public class App {
     return null;
   });
 
+  post("/cuisines/:id/restaurants/delete", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Restaurant restaurant = Restaurant.find(Integer.parseInt(request.params(":id")));
+    model.put("template", "templates/restaurant-delete-form.vtl");
+    restaurant.delete();
+    model.put("restaurants", Restaurant.all());
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+    response.redirect("/cuisine");
+    return null;
   }
 }
